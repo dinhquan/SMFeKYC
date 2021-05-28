@@ -14,23 +14,16 @@ public class SMFeKYC {
     public let refTxnID: Swift.String?
     public let faceImage: UIKit.UIImage?
   }
+  public enum Error : Swift.String {
+    case livenessFailed
+    case transactionFailed
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
   public init(authorizationToken: Swift.String, customizedRefID: Swift.String)
-  public func startLiveness(from viewController: UIKit.UIViewController, success: @escaping (SMFeKYC.SMFeKYC.Result) -> Swift.Void, failure: @escaping (Swift.String) -> Swift.Void)
+  public func startLiveness(from viewController: UIKit.UIViewController, success: @escaping (SMFeKYC.SMFeKYC.Result) -> Swift.Void, failure: @escaping (SMFeKYC.SMFeKYC.Error) -> Swift.Void)
   @objc deinit
-}
-public protocol SMFeKYCViewControllerDelegate : AnyObject {
-  func liveNessCheckSuccess(refTxnID: Swift.String?, bmSelfieUser: UIKit.UIImage?)
-  func liveNessCheckFail(errorMessage: Swift.String?)
-}
-@objc @_inheritsConvenienceInitializers public class SMFeKYCViewController : UIKit.UIViewController {
-  public var customizedRefID: Swift.String?
-  public var authorizationToken: Swift.String?
-  weak public var sMFeKYCDelegate: SMFeKYC.SMFeKYCViewControllerDelegate?
-  @objc override dynamic public func viewDidLoad()
-  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  public func startSMFeKYCController(refTxnID: Swift.String?, vendorRefID: Swift.String?)
-  @objc deinit
-  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @objc required dynamic public init?(coder: Foundation.NSCoder)
 }
