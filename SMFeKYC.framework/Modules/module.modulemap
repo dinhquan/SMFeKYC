@@ -1,0 +1,11 @@
+framework module SMFeKYC {
+  umbrella header "SMFeKYC.h"
+
+  export *
+  module * { export * }
+}
+
+module SMFeKYC.Swift {
+    header "SMFeKYC-Swift.h"
+    requires objc
+}
