@@ -17,13 +17,23 @@ public class SMFeKYC {
   public enum Error : Swift.String {
     case livenessFailed
     case transactionFailed
+    case initFailed
     public typealias RawValue = Swift.String
     public init?(rawValue: Swift.String)
     public var rawValue: Swift.String {
       get
     }
   }
-  public init(authorizationToken: Swift.String, customizedRefID: Swift.String)
+  public enum Language : Swift.String {
+    case english
+    case vietnamese
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public init(endpoint: Swift.String, authorizationToken: Swift.String, customizedRefID: Swift.String? = nil, language: SMFeKYC.SMFeKYC.Language = .vietnamese)
   public func startLiveness(from viewController: UIKit.UIViewController, success: @escaping (SMFeKYC.SMFeKYC.Result) -> Swift.Void, failure: @escaping (SMFeKYC.SMFeKYC.Error) -> Swift.Void)
   @objc deinit
 }
